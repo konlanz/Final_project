@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Synchronized Slider</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+      <script type="text/javascript">
+         $(document).ready(function() {
+         
+           // sending a connect request to the server.
+           var socket = io.connect('http://localhost:5000');
+           window.addEventListener("load", function(){ //when page loads
+              var lightbox = document.getElementById("power"); 
+              lightbox.addEventListener("change", function() {
+              console.log(Number(this.checked));
+              socket.emit('hello', Number(this.checked));
+          });
+        });
+         
+           // An event handler for a change of value 
+           $('input.sync').on('input', function(event) {
+               socket.emit('Slider value changed', {
+                   who: $(this).attr('id'),
+                   data: $(this).val()
+               });
+               return false;
+           });
+         
+           socket.on('after connect', function(msg) {
+               console.log('After connect', msg);
+           });
+        
+           socket.on('update value', function(msg) {
+               console.log('Slider value updated');
+               $('#' + msg.who).val(msg.data);
+           });
+         });
+
+ </script>
+</head>
+<body>
+    
+<form>
+
+<label class="switch">
+  <input type="checkbox"  id = "power">
+  <span class="slider round"></span>
+</label>
+
+</form>
+</body>
+</html>
