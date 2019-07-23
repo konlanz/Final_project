@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Synchronized Slider</title>
+    <title>SmartHome</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='index.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -33,7 +33,16 @@
            socket.on('after connect', function(msg) {
                console.log('After connect', msg);
            });
-        
+           socket.on('hey', function(msg) {
+               console.log('message sent', msg);
+           });
+           
+           socket.on('button', function(msg) {
+               console.log(msg);
+               document.getElementById("power").checked = msg;
+             
+           });
+           
            socket.on('update value', function(msg) {
                console.log('Slider value updated');
                $('#' + msg.who).val(msg.data);
