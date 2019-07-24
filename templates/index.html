@@ -16,9 +16,9 @@
            window.addEventListener("load", function(){ //when page loads
               var lightbox = document.getElementById("power"); 
               lightbox.addEventListener("change", function() {
-              console.log(Number(this.checked));
               socket.emit('hello', Number(this.checked));
           });
+                                                       
         });
          
            // An event handler for a change of value 
@@ -33,15 +33,18 @@
            socket.on('after connect', function(msg) {
                console.log('After connect', msg);
            });
-           socket.on('hey', function(msg) {
+           socket.on('timmer', function(msg) {
                console.log('message sent', msg);
+               var dx = document.getElementById("timer");
+               dx.innerText = msg
            });
            
            socket.on('button', function(msg) {
-               console.log(msg);
+              
                document.getElementById("power").checked = msg;
-             
+                console.log(document.getElementById("power").checked)
            });
+           
            
            socket.on('update value', function(msg) {
                console.log('Slider value updated');
@@ -52,14 +55,25 @@
  </script>
 </head>
 <body>
-    
-<form>
+<nav class="navbar fixed-top navbar-light bg-light">
+  <a class="navbar-brand" href="#">Home</a>
+</nav>
+<div class="container">
+<br>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="static/images/room.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">ROOM 45</h5>
+    <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
+       <form>
+    <label class="switch">
+      <input type="checkbox"  id = "power">
+      <span class="slider round"></span>
+    </label>
+    </form>
+  </div>
+</div>
 
-<label class="switch">
-  <input type="checkbox"  id = "power">
-  <span class="slider round"></span>
-</label>
-
-</form>
+</div>
 </body>
 </html>
