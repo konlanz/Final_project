@@ -5,6 +5,8 @@ from gpiozero import LED, Button
 from datetime import datetime
 from signal import pause
 led = LED(17)
+ledy = LED(22)
+ledb = LED(26)
 button = Button(2)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -33,6 +35,36 @@ def handle_message(message):
     socketio.emit('timmer', str(timmerx))
 
 
+@socketio.on('blueled')
+def handle_message(message):
+    global start, stop
+    
+    if(message == 1 ):
+        ledb.on()
+        start = datetime.now()
+    else:
+        ledb.off()
+        
+    
+    stop = datetime.now()
+    timmerx = stop-start
+    socketio.emit('timmerb', str(timmerx))
+    
+    
+@socketio.on('yeled')
+def handle_message(message):
+    global start, stop
+    
+    if(message == 1 ):
+        ledy.on()
+        start = datetime.now()
+    else:
+        ledy.off()
+        
+    
+    stop = datetime.now()
+    timmerx = stop-start
+    socketio.emit('timmery', str(timmerx))
 
 light_on = False
 

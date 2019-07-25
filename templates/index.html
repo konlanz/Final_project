@@ -21,6 +21,22 @@
           });
                                                        
         });
+           
+        window.addEventListener("load", function(){ //when page loads
+              var lightbox = document.getElementById("ledb"); 
+              lightbox.addEventListener("change", function() {
+              socket.emit('blueled', Number(this.checked));
+          });
+                                                       
+        });
+           
+        window.addEventListener("load", function(){ //when page loads
+              var lightbox = document.getElementById("ledy"); 
+              lightbox.addEventListener("change", function() {
+              socket.emit('yeled', Number(this.checked));
+          });
+                                                       
+        });
          
            // An event handler for a change of value 
            $('input.sync').on('input', function(event) {
@@ -37,6 +53,16 @@
            socket.on('timmer', function(msg) {
                console.log('message sent', msg);
                var dx = document.getElementById("timer");
+               dx.innerText = msg
+           });
+            socket.on('timmery', function(msg) {
+               console.log('message sent', msg);
+               var dx = document.getElementById("timery");
+               dx.innerText = msg
+           });
+           socket.on('timmerb', function(msg) {
+               console.log('message sent', msg);
+               var dx = document.getElementById("timerb");
                dx.innerText = msg
            });
            
@@ -84,10 +110,10 @@
           <img class="card-img-top" src="static/images/masterbed.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Bed Room 1</h5>
-            <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
+            <p class="card-text">Time On:<div class="timer" id = "timerb"></div></p>
                <form>
             <label class="switch">
-              <input type="checkbox"  id = "power">
+              <input type="checkbox"  id = "ledb">
               <span class="slider round"></span>
             </label>
             </form>
@@ -100,10 +126,10 @@
           <img class="card-img-top" src="static/images/outdoor.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Outdoor light</h5>
-            <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
+            <p class="card-text">Time On:<div class="timer" id = "timery"></div></p>
                <form>
             <label class="switch">
-              <input type="checkbox"  id = "power">
+              <input type="checkbox"  id = "ledy">
               <span class="slider round"></span>
             </label>
             </form>
