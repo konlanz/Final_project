@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>SmartHome</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='index.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -56,63 +55,10 @@
  </script>
 </head>
 <body>
-<nav class="navbar  shadow-lg p-3 mb-5 navbar-light bg-light">
+<nav class="navbar fixed-top shadow-lg p-3 mb-5 navbar-light bg-light">
   <a class="navbar-brand" href="#">Home</a>
-  <a class="navother" href="#">Logout</a>
 </nav>
-<div class="container-fluid">
-
 <div class="row">
-  <div class="col-md-4">
-    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-      <img class="card-img-top" src="static/images/livingroom.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Living Room</h5>
-        <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
-           <form>
-        <label class="switch">
-          <input type="checkbox"  id = "power">
-          <span class="slider round"></span>
-        </label>
-        </form>
-      </div>
-    </div>
-    
-  </div>
-  <div class="col-md-4">
-      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-          <img class="card-img-top" src="static/images/masterbed.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Bed Room 1</h5>
-            <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
-               <form>
-            <label class="switch">
-              <input type="checkbox"  id = "power">
-              <span class="slider round"></span>
-            </label>
-            </form>
-          </div>
-        </div>
-              
-  </div>
-  <div class="col-md-4">
-      <div class="card shadow-lg p-3 mb-5 bg-white rounde">
-          <img class="card-img-top" src="static/images/outdoor.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Outdoor light</h5>
-            <p class="card-text">Time On:<div class="timer" id = "timer"></div></p>
-               <form>
-            <label class="switch">
-              <input type="checkbox"  id = "power">
-              <span class="slider round"></span>
-            </label>
-            </form>
-          </div>
-        </div>
-                
-  </div>
-
-</div>
 </div>
 </body>
 </html>
