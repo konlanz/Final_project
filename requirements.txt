@@ -21,7 +21,6 @@ docutils==0.14
 drumhat==0.1.0
 entrypoints==0.3
 envirophat==1.0.0
-evillimiter==1.2.0
 ExplorerHAT==0.4.2
 Flask==1.0.2
 Flask-SocketIO==4.1.0
