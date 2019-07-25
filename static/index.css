@@ -36,7 +36,7 @@
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #0336FF;
 }
 
 input:focus + .slider {
@@ -58,7 +58,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-
-.navother{
+.navbar{
+    background-color: #3700B3;
     
     }
+a{
+    color: #FFFFFF;
+}

@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask import request
+import requests
 from flask_socketio import SocketIO, emit
 from gpiozero import LED, Button
 from datetime import datetime
@@ -8,10 +9,11 @@ led = LED(17)
 ledy = LED(22)
 ledb = LED(26)
 button = Button(2)
+buttonx = Button(3)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
-@app.route('/')
+@app.route('/home')
 def index():
     return render_template('index.html')
 @socketio.on('connect')
@@ -89,12 +91,25 @@ def handle_abc():
  
     
 button.when_pressed = handle_abc
-
+A = "Door Bell"
+def hello():
+    print("Hello Zion")
+    requests.post("https://maker.ifttt.com/trigger/global/with/key/denIvf-6DKIG3yS_Ovo8p4", A)
+   
     
 
-              
-@app.route('/whereami')
-def whereami():
-    return 'Ghana'
+buttonx.when_pressed =  hello
+
+                
+@app.route('/login')
+def login():
+    return render_template('index.html')
+@app.route('/signup')
+def signup():
+    return render_template('index.html')
+
+@app.route('/')
+def home():
+    return render_template('xindex.html')
 if __name__ == '__main__':
     socketio.run(app)
