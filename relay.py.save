@@ -1,0 +1,13 @@
+import time
+
+import RPi.GPIO as GPIO
+
+
+00GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, GPIO.LOW)
+
+time.sleep(120)
+
+GPIO.output(17, GPIO.LOW)
+GPIO.cleanup()

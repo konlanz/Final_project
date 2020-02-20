@@ -3,9 +3,13 @@ from flask import request
 import requests
 from flask_socketio import SocketIO, emit
 from gpiozero import LED, Button
+import RPi.GPIO as GPIO
 from datetime import datetime
 from signal import pause
-led = LED(17)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, GPIO.LOW)
+led = LED(4)
 ledy = LED(22)
 ledb = LED(26)
 button = Button(2)
@@ -20,16 +24,18 @@ def index():
 def on_connect():
     emit('after connect',  "hello connected")
 
-
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))
 @socketio.on('hello')
 def handle_message(message):
     global start, stop
     
     if(message == 1 ):
-        led.on()
+        GPIO.output(17, GPIO.LOW)
         start = datetime.now()
     else:
-        led.off()
+        GPIO.output(17, GPIO.HIGH)
         
     
     stop = datetime.now()
